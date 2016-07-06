@@ -12,17 +12,11 @@ var Game = cc.Layer.extend({
     ctor: function() {
         this._super();
         var size = cc.director.getWinSize();
-        for (var j = 0; j < 4; j++) {
-          for(var i = 0; i < 4; i++){
-            var sprite = new cc.Sprite(res.cover_png);
-            sprite.attr({
-                x: size.width  * 0.18 + 70 * i,
-                y: size.height * 0.2 + 70 * j,
-                scale: 1.0,
-                rotation: 0
-            });
-            this.addChild(sprite, 0);
-          }
+        for(i=0;i<16;i++){
+          var tile = cc.Sprite.create(res.cover_png);
+          this.addChild(tile,0);
+          //タイルを格子状に配置する計算式
+          tile.setPosition(49+i%4*74,400-Math.floor(i/4)*74);
         }
     },
 });
